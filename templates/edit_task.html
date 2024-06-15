@@ -1,0 +1,30 @@
+{% extends "base_template.html" %}
+{% block title %}Editar tarea{% endblock %}
+{% block content %}
+<h1 class="h3 mb-2 text-gray-800">Editar tarea</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <label for="task">Tarea</label>
+        {{ form.Task(class="form-control") }}   
+    </div>
+    <div class="form-group">
+        <label for="description">Descripcion</label>
+        {{ form.Description(class="form-control") }}
+    </div>
+    <div class="form-group">
+        <label for="fecha_inicio">Fecha de inicio</label>
+        {{ form.fecha_inicio(class="form-control") }}
+    </div>
+    <div class="form-group">
+        <label for="fecha_fin">Fecha fin</label>
+        {{ form.fecha_fin(class="form-control") }}
+    </div>
+    <div class="form-group">
+        <label for="estado">Estado</label>
+        {{ form.completed(class="form-control") }}
+    </div>
+      {{ form.submit(class="btn btn-primary") }} 
+      <a href="{{ url_for('delete_task', task_id=task.id) }}" class="btn btn-danger">Eliminar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base_template.html" %}
+{% block styles %}
+    <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css')}} " rel="stylesheet"> 
+{% endblock %}
+{% block title %}Tareas{% endblock %}
+{% block content %}
+<h1 class="h3 mb-2 text-gray-800">Tablas</h1>
+<p class="mb-4">Estas son las tablas de las tareas
+    {{ current_user.first_name }}
+
+</p>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Tabla de tareas</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tarea</th>
+                        <th>Descripcion</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha fin</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Tarea</th>
+                        <th>Descripcion</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha fin</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr >
+                        <td>{{ task.Task }}</td>
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">{{ task.Description }}</td>
+                        <td>{{ task.fecha_inicio }}</td>
+                        <td>{{ task.fecha_fin }}</td>
+                        {% if task.completed == 1 %}
+                        <td>&#x2705</td>
+                        {% else %}
+                        <td>&#x274C</td>
+                        {% endif %}
+                        <td><a href="{{ url_for('edit_task', task_id=task.id) }}">Editar</a></td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+    {% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js')}}" ></script>
+    <script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js')}}" ></script>
+    <script src="{{ url_for('static', filename='js/demo/datatables-demo.js')}}" ></script>
+
+    </script>
+{% endblock %}

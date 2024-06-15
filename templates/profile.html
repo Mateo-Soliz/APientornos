@@ -1,0 +1,35 @@
+{% extends "base_template.html" %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+<h1 class="h3 mb-2 text-gray-800">Perfil</h1>
+<p class="mb-4">Estos son los datos del usuario {{ current_user.first_name }} {{ current_user.last_name }}</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Datos del usuario</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Contraseña</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ current_user.first_name }}</td>
+                        <td>{{ current_user.last_name }}</td>
+                        <td>{{ current_user.email }}</td>
+                        <td>{{ '•' * 10 }}</td>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
